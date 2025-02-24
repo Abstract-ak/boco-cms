@@ -9,7 +9,7 @@ const CaseStudies = () => {
       try {
         // const LocalURL= "http://localhost:1337"
         const response = await fetch(
-          "http://localhost:1337/api/pages?populate=*"
+          "https://boco-cms-backend.onrender.com/api/pages?populate=*"
         );
         const data = await response.json();
         // Map through the data and extract the necessary fields
@@ -17,7 +17,7 @@ const CaseStudies = () => {
           title: item.title,
           client: item.client,
           description: item.description,
-          image: `http://localhost:1337${item.image.url}`, // Construct the full image URL
+          image: `https://boco-cms-backend.onrender.com${item.image.url}`, // Construct the full image URL
           tags: item.tags,
         }));
         setCases(formattedCases); // Assuming the API returns an array of services
