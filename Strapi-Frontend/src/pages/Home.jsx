@@ -9,9 +9,7 @@ const Home = () => {
     const fetchServices = async () => {
       try {
         // const LocalURL= "http://localhost:1337"
-        const response = await fetch(
-          "https://boco-cms-backend.onrender.com/api/services"
-        );
+        const response = await fetch("http://localhost:1337/api/services");
         const data = await response.json();
         setServices(data.data); // Assuming the API returns an array of services
         console.log(data);

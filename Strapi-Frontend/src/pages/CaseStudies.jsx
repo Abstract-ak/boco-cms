@@ -9,11 +9,19 @@ const CaseStudies = () => {
       try {
         // const LocalURL= "http://localhost:1337"
         const response = await fetch(
-          "https://boco-cms-backend.onrender.com/api/pages"
+          "http://localhost:1337/api/pages?populate=*"
         );
         const data = await response.json();
-        setCases(data.data); // Assuming the API returns an array of services
-        console.log(data.data, "data-title");
+        // Map through the data and extract the necessary fields
+        const formattedCases = data.data.map((item) => ({
+          title: item.title,
+          client: item.client,
+          description: item.description,
+          image: `http://localhost:1337${item.image.url}`, // Construct the full image URL
+          tags: item.tags,
+        }));
+        setCases(formattedCases); // Assuming the API returns an array of services
+        // console.log(data.data[0].image, "data-title");
         // console.log(data.data, "data-title");
       } catch (error) {
         console.error("Error fetching services:", error);
