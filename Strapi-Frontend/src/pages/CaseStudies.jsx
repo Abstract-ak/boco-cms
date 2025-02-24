@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const CaseStudies = () => {
   const [cases, setCases] = useState([]);
@@ -7,19 +7,21 @@ const CaseStudies = () => {
   useEffect(() => {
     const fetchCases = async () => {
       try {
-        const response = await fetch('http://localhost:1337/api/pages');
+        // const LocalURL= "http://localhost:1337"
+        const response = await fetch(
+          "https://boco-cms-backend.onrender.com/api/pages"
+        );
         const data = await response.json();
         setCases(data.data); // Assuming the API returns an array of services
         console.log(data.data, "data-title");
         // console.log(data.data, "data-title");
       } catch (error) {
-        console.error('Error fetching services:', error);
+        console.error("Error fetching services:", error);
       }
     };
 
     fetchCases();
   }, []);
-
 
   // const cases = [
   //   {
@@ -55,7 +57,8 @@ const CaseStudies = () => {
         >
           <h1 className="text-5xl font-bold mb-6">Our Work</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore our portfolio of successful digital transformations and e-commerce solutions.
+            Explore our portfolio of successful digital transformations and
+            e-commerce solutions.
           </p>
         </motion.div>
 
@@ -69,23 +72,25 @@ const CaseStudies = () => {
               className="group cursor-pointer"
             >
               <div className="relative overflow-hidden rounded-2xl">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white text-xl font-semibold">View Case Study</span>
+                  <span className="text-white text-xl font-semibold">
+                    View Case Study
+                  </span>
                 </div>
               </div>
-              
+
               <div className="mt-8">
                 <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
                 <p className="text-xl text-gray-600 mb-4">{project.client}</p>
                 <p className="text-gray-600 mb-6">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => (
-                    <span 
+                    <span
                       key={tagIndex}
                       className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium"
                     >
